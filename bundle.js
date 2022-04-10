@@ -29,211 +29,95 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var baseURL = 'https://immense-spire-44992.herokuapp.com/';
+
+var userFetcher = /*#__PURE__*/function () {
+  var _ref2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(_ref) {
+    var method, path, token, _ref$body, body, headers, response, errorMessage;
+
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            method = _ref.method, path = _ref.path, token = _ref.token, _ref$body = _ref.body, body = _ref$body === void 0 ? {} : _ref$body;
+            headers = {
+              'Content-Type': 'application/json'
+            };
+            if (token) headers.Authorization = "Bearer ".concat(token);
+            _context.next = 5;
+            return fetch("".concat(baseURL).concat(path), {
+              method: method,
+              body: JSON.stringify(body),
+              headers: headers
+            });
+
+          case 5:
+            response = _context.sent;
+
+            if (response.ok) {
+              _context.next = 11;
+              break;
+            }
+
+            _context.next = 9;
+            return response.json();
+
+          case 9:
+            errorMessage = _context.sent;
+            throw Error(errorMessage);
+
+          case 11:
+            return _context.abrupt("return", response.json());
+
+          case 12:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function userFetcher(_x) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
 var UserApi = {
-  signIn: function () {
-    var _signIn = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee(email, password) {
-      var response, errorMessage;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return fetch("".concat(baseURL, "login"), {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                  email: email,
-                  password: password
-                })
-              });
-
-            case 2:
-              response = _context.sent;
-
-              if (response.ok) {
-                _context.next = 8;
-                break;
-              }
-
-              _context.next = 6;
-              return response.json();
-
-            case 6:
-              errorMessage = _context.sent;
-              throw Error(errorMessage);
-
-            case 8:
-              return _context.abrupt("return", response.json());
-
-            case 9:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-
-    function signIn(_x, _x2) {
-      return _signIn.apply(this, arguments);
-    }
-
-    return signIn;
-  }(),
-  signUp: function () {
-    var _signUp = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(email, name, password) {
-      var data, response, errorMessage;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              data = {
-                email: email,
-                password: password,
-                name: name
-              };
-              _context2.next = 3;
-              return fetch("".concat(baseURL, "signup"), {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-              });
-
-            case 3:
-              response = _context2.sent;
-
-              if (response.ok) {
-                _context2.next = 9;
-                break;
-              }
-
-              _context2.next = 7;
-              return response.json();
-
-            case 7:
-              errorMessage = _context2.sent;
-              throw Error(errorMessage);
-
-            case 9:
-              return _context2.abrupt("return", response.json());
-
-            case 10:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-
-    function signUp(_x3, _x4, _x5) {
-      return _signUp.apply(this, arguments);
-    }
-
-    return signUp;
-  }(),
-  searchInfo: function () {
-    var _searchInfo = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee3(accessToken) {
-      var response, errorMessage;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              _context3.next = 2;
-              return fetch("".concat(baseURL, "users/me"), {
-                headers: {
-                  Authorization: "Bearer ".concat(accessToken)
-                }
-              });
-
-            case 2:
-              response = _context3.sent;
-
-              if (response.ok) {
-                _context3.next = 8;
-                break;
-              }
-
-              _context3.next = 6;
-              return response.json();
-
-            case 6:
-              errorMessage = _context3.sent;
-              throw Error(errorMessage);
-
-            case 8:
-              return _context3.abrupt("return", response.json());
-
-            case 9:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3);
-    }));
-
-    function searchInfo(_x6) {
-      return _searchInfo.apply(this, arguments);
-    }
-
-    return searchInfo;
-  }(),
-  update: function () {
-    var _update = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee4(accessToken, id, _ref) {
-      var email, name, password, response, errorMessage;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee4$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              email = _ref.email, name = _ref.name, password = _ref.password;
-              _context4.next = 3;
-              return fetch("".concat(baseURL, "users/").concat(id), {
-                method: 'PUT',
-                headers: {
-                  Authorization: "Bearer ".concat(accessToken),
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                  email: email,
-                  name: name,
-                  password: password
-                })
-              });
-
-            case 3:
-              response = _context4.sent;
-
-              if (response.ok) {
-                _context4.next = 9;
-                break;
-              }
-
-              _context4.next = 7;
-              return response.json();
-
-            case 7:
-              errorMessage = _context4.sent;
-              throw Error(errorMessage);
-
-            case 9:
-              return _context4.abrupt("return", response.json());
-
-            case 10:
-            case "end":
-              return _context4.stop();
-          }
-        }
-      }, _callee4);
-    }));
-
-    function update(_x7, _x8, _x9) {
-      return _update.apply(this, arguments);
-    }
-
-    return update;
-  }()
+  signIn: function signIn(email, password) {
+    return userFetcher({
+      method: 'POST',
+      path: 'login',
+      body: {
+        email: email,
+        password: password
+      }
+    });
+  },
+  signUp: function signUp(email, name, password) {
+    return userFetcher({
+      method: 'POST',
+      path: 'signup',
+      body: {
+        email: email,
+        password: password,
+        name: name
+      }
+    });
+  },
+  searchInfo: function searchInfo(token) {
+    return userFetcher({
+      method: 'GET',
+      path: 'user/me',
+      token: token
+    });
+  },
+  update: function update(token, id, body) {
+    return userFetcher({
+      method: 'PUT',
+      path: "users/".concat(id),
+      token: token,
+      body: body
+    });
+  }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserApi);
 
@@ -254,7 +138,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ERROR_MESSAGE": () => (/* binding */ ERROR_MESSAGE),
 /* harmony export */   "confirmMessage": () => (/* binding */ confirmMessage),
 /* harmony export */   "LOGIN_ERROR": () => (/* binding */ LOGIN_ERROR),
-/* harmony export */   "SIGNUP_ERROR": () => (/* binding */ SIGNUP_ERROR)
+/* harmony export */   "SIGNUP_ERROR": () => (/* binding */ SIGNUP_ERROR),
+/* harmony export */   "SUCCESS_MESSAGE": () => (/* binding */ SUCCESS_MESSAGE),
+/* harmony export */   "COOKIE_KEY": () => (/* binding */ COOKIE_KEY)
 /* harmony export */ });
 var PRODUCT_RULES = {
   MAX_NAME_LENGTH: 10,
@@ -271,7 +157,9 @@ var VENDING_MACHINE_RULES = {
 };
 var USER_RULES = {
   MIN_NAME_LENGTH: 2,
-  MAX_NAME_LENGTH: 6
+  MAX_NAME_LENGTH: 6,
+  MIN_PASSWORD_LENGTH: 8,
+  MAX_PASSWORD_LENGTH: 16
 };
 var ERROR_MESSAGE = {
   CONTAIN_EMPTY_FIELD_IN_FORM: '상품명, 가격, 수량을 모두 입력해주세요.',
@@ -288,7 +176,12 @@ var ERROR_MESSAGE = {
   EXCEED_MAX_TOTAL_MONEY: "\uCD5C\uB300 \uCDA9\uC804 \uAE08\uC561\uC740 ".concat(VENDING_MACHINE_RULES.MAX_TOTAL_INPUT_MONEY, "\uC6D0\uC744 \uCD08\uACFC\uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4."),
   INVALID_UNIT_MONEY: "".concat(VENDING_MACHINE_RULES.CHANGE_UNIT, "\uC6D0 \uB2E8\uC704\uB85C \uAE08\uC561\uC744 \uD22C\uC785\uD574\uC8FC\uC138\uC694"),
   INVALID_NAME_LENGTH: "\uC774\uB984\uC740 \uCD5C\uC18C".concat(USER_RULES.MIN_NAME_LENGTH, "\uC774\uC0C1 \uCD5C\uB300 ").concat(USER_RULES.MAX_NAME_LENGTH, "\uC774\uD558\uC5EC\uC57C \uD569\uB2C8\uB2E4"),
-  INVALID_PASSWORD: '비밀번호는 8자 이상 16자 이하로 대문자,소문자, 특수문자가 1번 이상 포함되어야 합니다.'
+  INVALID_PASSWORD: "\uBE44\uBC00\uBC88\uD638\uB294 ".concat(USER_RULES.MIN_PASSWORD_LENGTH, "\uC790 \uC774\uC0C1 ").concat(USER_RULES.MAX_PASSWORD_LENGTH, "\uC790 \uC774\uD558\uB85C \uB300\uBB38\uC790,\uC18C\uBB38\uC790, \uD2B9\uC218\uBB38\uC790\uAC00 1\uBC88 \uC774\uC0C1 \uD3EC\uD568\uB418\uC5B4\uC57C \uD569\uB2C8\uB2E4."),
+  SOLD_OUT: '해당 상품은 품절되었습니다',
+  NOT_ENOUGH_MONEY: '금액이 부족합니다.',
+  NOT_SAME_PASSWORD: '비밀번호와 비밀번호 확인이 일치하지않습니다.',
+  NOT_LOGIN: '로그인이 필요합니다.',
+  ALREADY_LOGGINED: '이미 로그인한 상태입니다.'
 };
 function confirmMessage() {
   return '정말 삭제하시겠습니까?';
@@ -300,6 +193,18 @@ var LOGIN_ERROR = {
 var SIGNUP_ERROR = {
   'Email already exists': '해당 이메일이 존재합니다.'
 };
+var SUCCESS_MESSAGE = {
+  LOGIN: '로그인 성공',
+  SIGNUP: '회원가입이 완료되었습니다.',
+  ADD_CHANGE: '잔돈이 충전되었습니다',
+  ADD_PRODUCT: '상품이 추가되었습니다.',
+  UPDATE_PROUDCT: '상품이 수정되었습니다.',
+  REMOVE_PRODUCT: '상품이 삭제되었습니다.',
+  INPUT_MONEY: '금액이 충전되었습니다.',
+  PURCHASE_PRODUCT: '상품을 구매하였습니다.',
+  GIVE_CHANGE: '잔돈이 반환되었습니다.'
+};
+var COOKIE_KEY = 'accessToken';
 
 /***/ }),
 
@@ -382,7 +287,7 @@ function UserController(user, loginTab, signUpTab, myProfileTab, pages) {
     writable: true,
     value: function () {
       var _value = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().mark(function _callee(e) {
-        var _e$detail, email, password, _LOGIN_ERROR$err$mess, tabChange;
+        var _e$detail, email, password, _LOGIN_ERROR$err$mess;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().wrap(function _callee$(_context) {
           while (1) {
@@ -408,15 +313,10 @@ function UserController(user, loginTab, signUpTab, myProfileTab, pages) {
 
                 _classPrivateMethodGet(_this, _renderProfile, _renderProfile2).call(_this);
 
-                (0,_utils_dom__WEBPACK_IMPORTED_MODULE_8__.generateSnackBar)('로그인 성공');
-                tabChange = new CustomEvent('tabChange', {
-                  detail: {
-                    newHash: '/#/purchase'
-                  }
-                });
-                window.dispatchEvent(tabChange);
+                (0,_utils_dom__WEBPACK_IMPORTED_MODULE_8__.generateSnackBar)(_constants__WEBPACK_IMPORTED_MODULE_6__.SUCCESS_MESSAGE.LOGIN);
+                (0,_utils_event__WEBPACK_IMPORTED_MODULE_9__.dispatchTabChangeEvent)('/#/purchase');
 
-              case 15:
+              case 14:
               case "end":
                 return _context.stop();
             }
@@ -436,7 +336,7 @@ function UserController(user, loginTab, signUpTab, myProfileTab, pages) {
     writable: true,
     value: function () {
       var _value2 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().mark(function _callee2(e) {
-        var _e$detail2, email, password, name, _SIGNUP_ERROR$err$mes, tabChange;
+        var _e$detail2, email, password, name, _SIGNUP_ERROR$err$mes;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().wrap(function _callee2$(_context2) {
           while (1) {
@@ -462,15 +362,10 @@ function UserController(user, loginTab, signUpTab, myProfileTab, pages) {
 
                 _classPrivateMethodGet(_this, _renderProfile, _renderProfile2).call(_this);
 
-                (0,_utils_dom__WEBPACK_IMPORTED_MODULE_8__.generateSnackBar)('회원가입이 완료되었습니다.');
-                tabChange = new CustomEvent('tabChange', {
-                  detail: {
-                    newHash: '/#/purchase'
-                  }
-                });
-                window.dispatchEvent(tabChange);
+                (0,_utils_dom__WEBPACK_IMPORTED_MODULE_8__.generateSnackBar)(_constants__WEBPACK_IMPORTED_MODULE_6__.SUCCESS_MESSAGE.SIGNUP);
+                (0,_utils_event__WEBPACK_IMPORTED_MODULE_9__.dispatchTabChangeEvent)('/#/purchase');
 
-              case 15:
+              case 14:
               case "end":
                 return _context2.stop();
             }
@@ -490,7 +385,7 @@ function UserController(user, loginTab, signUpTab, myProfileTab, pages) {
     writable: true,
     value: function () {
       var _value3 = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().mark(function _callee3(e) {
-        var _e$detail3, email, password, name, tabChange;
+        var _e$detail3, email, password, name;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default().wrap(function _callee3$(_context3) {
           while (1) {
@@ -516,14 +411,9 @@ function UserController(user, loginTab, signUpTab, myProfileTab, pages) {
                 return _context3.abrupt("return");
 
               case 12:
-                tabChange = new CustomEvent('tabChange', {
-                  detail: {
-                    newHash: '/#/purchase'
-                  }
-                });
-                window.dispatchEvent(tabChange);
+                (0,_utils_event__WEBPACK_IMPORTED_MODULE_9__.dispatchTabChangeEvent)('/#/purchase');
 
-              case 14:
+              case 13:
               case "end":
                 return _context3.stop();
             }
@@ -548,12 +438,7 @@ function UserController(user, loginTab, signUpTab, myProfileTab, pages) {
 
       _classPrivateMethodGet(_this, _renderTabMenu, _renderTabMenu2).call(_this);
 
-      var tabChange = new CustomEvent('tabChange', {
-        detail: {
-          newHash: '/#/purchase'
-        }
-      });
-      window.dispatchEvent(tabChange);
+      (0,_utils_event__WEBPACK_IMPORTED_MODULE_9__.dispatchTabChangeEvent)('/#/purchase');
     }
   });
 
@@ -646,8 +531,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
 /* harmony import */ var _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/classPrivateFieldGet */ "./node_modules/@babel/runtime/helpers/esm/classPrivateFieldGet.js");
 /* harmony import */ var _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/classPrivateFieldSet */ "./node_modules/@babel/runtime/helpers/esm/classPrivateFieldSet.js");
-/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/dom */ "./src/js/utils/dom.js");
-/* harmony import */ var _utils_event__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/event */ "./src/js/utils/event.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../constants */ "./src/js/constants/index.js");
+/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/dom */ "./src/js/utils/dom.js");
+/* harmony import */ var _utils_event__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/event */ "./src/js/utils/event.js");
 
 
 
@@ -661,6 +547,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _classPrivateFieldInitSpec(obj, privateMap, value) { _checkPrivateRedeclaration(obj, privateMap); privateMap.set(obj, value); }
 
 function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
+
 
 
 
@@ -701,7 +588,7 @@ function VendingMachineController(vendingMachine, addChangeView, manageProductVi
 
       _this.addChangePage.resetInput();
 
-      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.generateSnackBar)('잔돈이 충전되었습니다.');
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.generateSnackBar)(_constants__WEBPACK_IMPORTED_MODULE_5__.SUCCESS_MESSAGE.ADD_CHANGE);
     }
   });
 
@@ -729,7 +616,7 @@ function VendingMachineController(vendingMachine, addChangeView, manageProductVi
         stock: stock
       });
 
-      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.generateSnackBar)('상품이 추가되었습니다.');
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.generateSnackBar)(_constants__WEBPACK_IMPORTED_MODULE_5__.SUCCESS_MESSAGE.ADD_PRODUCT);
     }
   });
 
@@ -744,7 +631,7 @@ function VendingMachineController(vendingMachine, addChangeView, manageProductVi
 
       _this.purchaseProductView.renderUpdateProduct(id, (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_3__["default"])(_this, _vendingMachine).productList[id]);
 
-      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.generateSnackBar)('상품이 수정되었습니다.');
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.generateSnackBar)(_constants__WEBPACK_IMPORTED_MODULE_5__.SUCCESS_MESSAGE.UPDATE_PROUDCT);
     }
   });
 
@@ -759,7 +646,7 @@ function VendingMachineController(vendingMachine, addChangeView, manageProductVi
 
       _this.purchaseProductView.removeProduct(id);
 
-      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.generateSnackBar)('상품이 삭제되었습니다.');
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.generateSnackBar)(_constants__WEBPACK_IMPORTED_MODULE_5__.SUCCESS_MESSAGE.REMOVE_PRODUCT);
     }
   });
 
@@ -772,7 +659,7 @@ function VendingMachineController(vendingMachine, addChangeView, manageProductVi
 
       _this.purchaseProductView.renderTotalMoney((0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_3__["default"])(_this, _vendingMachine).totalMoney);
 
-      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.generateSnackBar)('금액이 충전되었습니다.');
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.generateSnackBar)(_constants__WEBPACK_IMPORTED_MODULE_5__.SUCCESS_MESSAGE.INPUT_MONEY);
     }
   });
 
@@ -789,7 +676,7 @@ function VendingMachineController(vendingMachine, addChangeView, manageProductVi
 
       _this.purchaseProductView.renderTotalMoney((0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_3__["default"])(_this, _vendingMachine).totalMoney);
 
-      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.generateSnackBar)('상품을 구매하였습니다.');
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.generateSnackBar)(_constants__WEBPACK_IMPORTED_MODULE_5__.SUCCESS_MESSAGE.PURCHASE_PRODUCT);
     }
   });
 
@@ -804,7 +691,7 @@ function VendingMachineController(vendingMachine, addChangeView, manageProductVi
 
       _this.addChangePage.renderCoinStatus((0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_3__["default"])(_this, _vendingMachine).coinStatus, (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_3__["default"])(_this, _vendingMachine).totalChange);
 
-      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.generateSnackBar)('잔돈이 반환되었습니다.');
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.generateSnackBar)(_constants__WEBPACK_IMPORTED_MODULE_5__.SUCCESS_MESSAGE.GIVE_CHANGE);
     }
   });
 
@@ -815,7 +702,7 @@ function VendingMachineController(vendingMachine, addChangeView, manageProductVi
   this.purchaseProductView = purchaseProductView.main;
   this.manageProductView.renderInitProductList((0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _vendingMachine).productList);
   this.purchaseProductView.renderInitProductList((0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _vendingMachine).productList);
-  (0,_utils_event__WEBPACK_IMPORTED_MODULE_6__.listenEvents)(this.manageProductView.element, [{
+  (0,_utils_event__WEBPACK_IMPORTED_MODULE_7__.listenEvents)(this.manageProductView.element, [{
     type: 'addProduct',
     cb: (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _addProduct)
   }, {
@@ -825,11 +712,11 @@ function VendingMachineController(vendingMachine, addChangeView, manageProductVi
     type: 'removeProduct',
     cb: (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _removeProduct)
   }]);
-  (0,_utils_event__WEBPACK_IMPORTED_MODULE_6__.listenEvents)(this.addChangePage.element, [{
+  (0,_utils_event__WEBPACK_IMPORTED_MODULE_7__.listenEvents)(this.addChangePage.element, [{
     type: 'addChange',
     cb: (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _addChange)
   }]);
-  (0,_utils_event__WEBPACK_IMPORTED_MODULE_6__.listenEvents)(this.purchaseProductView.element, [{
+  (0,_utils_event__WEBPACK_IMPORTED_MODULE_7__.listenEvents)(this.purchaseProductView.element, [{
     type: 'inputMoney',
     cb: (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _inputMoney)
   }, {
@@ -943,6 +830,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "selectDom": () => (/* binding */ selectDom),
 /* harmony export */   "createMainElement": () => (/* binding */ createMainElement),
 /* harmony export */   "createElementByTemplate": () => (/* binding */ createElementByTemplate),
+/* harmony export */   "snackBar": () => (/* binding */ snackBar),
 /* harmony export */   "generateSnackBar": () => (/* binding */ generateSnackBar)
 /* harmony export */ });
 function selectDom(selector) {
@@ -959,14 +847,63 @@ function createElementByTemplate(type, template) {
   element.insertAdjacentHTML('beforeend', template);
   return element;
 }
-function generateSnackBar(text) {
-  var snackBarContainer = document.getElementById('snackbar');
-  snackBarContainer.className = 'show';
-  snackBarContainer.textContent = text;
-  setTimeout(function () {
-    snackBarContainer.className = snackBarContainer.className.replace('show', '');
-  }, 3000);
+
+function fadeOutAnimation(target, elasped, duration) {
+  var node = target;
+  node.style.transform = "translateY(".concat(-30 + 30 * elasped / duration, "px)");
+  node.style.opacity = 1 - elasped / duration;
+
+  if (elasped >= duration) {
+    node.classList.add('hide');
+  }
 }
+
+function fadeInAnimation(target, elasped, duration) {
+  var node = target;
+  node.classList.remove('hide');
+  node.style.transform = "translateY(-".concat(30 * elasped / duration, "px)");
+  node.style.opacity = elasped / duration;
+}
+
+function animationCallBack(target, duration, cb) {
+  var start;
+  return function callBack(timestamp) {
+    if (!start) {
+      start = timestamp;
+    }
+
+    var elasped = timestamp - start;
+    cb(target, elasped, duration);
+
+    if (elasped < duration) {
+      requestAnimationFrame(callBack);
+    }
+  };
+} // eslint-disable-next-line max-lines-per-function
+
+
+function snackBar() {
+  var snackBarContainer = document.getElementById('snackbar');
+  var timeoutID = null;
+  var isGenerated = false;
+  return function generate(text) {
+    if (isGenerated) {
+      clearTimeout(timeoutID);
+      isGenerated = false;
+      generate(text);
+      return;
+    }
+
+    isGenerated = true;
+    snackBarContainer.textContent = text;
+    requestAnimationFrame(animationCallBack(snackBarContainer, 500, fadeInAnimation));
+    timeoutID = setTimeout(function () {
+      requestAnimationFrame(animationCallBack(snackBarContainer, 500, fadeOutAnimation));
+      isGenerated = false;
+    }, 3000);
+  };
+}
+var generateSnackBar = snackBar();
 
 /***/ }),
 
@@ -980,7 +917,8 @@ function generateSnackBar(text) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "emitEvent": () => (/* binding */ emitEvent),
-/* harmony export */   "listenEvents": () => (/* binding */ listenEvents)
+/* harmony export */   "listenEvents": () => (/* binding */ listenEvents),
+/* harmony export */   "dispatchTabChangeEvent": () => (/* binding */ dispatchTabChangeEvent)
 /* harmony export */ });
 /* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dom */ "./src/js/utils/dom.js");
 
@@ -1001,6 +939,11 @@ function listenEvents(target, events) {
         (0,_dom__WEBPACK_IMPORTED_MODULE_0__.generateSnackBar)(error.message);
       }
     });
+  });
+}
+function dispatchTabChangeEvent(newHash) {
+  emitEvent(window, 'tabChange', {
+    newHash: newHash
   });
 }
 
@@ -1048,6 +991,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/classPrivateFieldSet */ "./node_modules/@babel/runtime/helpers/esm/classPrivateFieldSet.js");
 /* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/dom */ "./src/js/utils/dom.js");
 /* harmony import */ var _utils_event__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/event */ "./src/js/utils/event.js");
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./template */ "./src/js/view/template.js");
 
 
 
@@ -1059,7 +1003,7 @@ function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollect
 
 
 
-var template = "\n    <nav class=\"user-navigation\"> \n      <a type=\"button\" class=\"tab-menu-button\" id=\"to-login-anchor\" href=\"#/login\">\n        \uB85C\uADF8\uC778 \n        </a>\n    <button type=\"button\" class=\"user-navigation-profile--button hide\">\n        \uC6B0\n  </button>\n  <ul class=\"user-navigation--ul hide\">\n    <li type=\"button\" class=\"user-navigation--li\">\n      <a href=\"#/myprofile\" id=\"user-navigation-profile\">Profile</a>\n    </li>\n    <li type=\"button\" class=\"user-navigation--li\" id=\"logout\">\n      Logout\n    </li>\n  </ul>\n    </nav>\n    <h1 id=\"app-title\">\uD83C\uDF7F \uC790\uD310\uAE30 \uD83C\uDF7F</h1>\n    <nav id=\"tab-menu-navigation\">\n        <a type=\"button\" id=\"manage-tab-menu\" class=\"tab-menu-button\" href=\"#/manage\">\n          \uC0C1\uD488 \uAD00\uB9AC\n        </a>\n        <a type=\"button\" id=\"charge-tab-menu\" class=\"tab-menu-button\" href=\"#/charge\">\n          \uC794\uB3C8 \uCDA9\uC804\n        </a>\n        <a type=\"button\" id=\"purchase-tab-menu\" class=\"tab-menu-button\" href=\"#/purchase\">\n          \uC0C1\uD488 \uAD6C\uB9E4\n        </a>\n    </nav>\n    ";
+
 
 var _navContainer = /*#__PURE__*/new WeakMap();
 
@@ -1121,12 +1065,7 @@ var Navigation = /*#__PURE__*/function () {
           return;
         }
 
-        var tabChange = new CustomEvent('tabChange', {
-          detail: {
-            newHash: newHash
-          }
-        });
-        window.dispatchEvent(tabChange);
+        (0,_utils_event__WEBPACK_IMPORTED_MODULE_5__.dispatchTabChangeEvent)(newHash);
       }
     });
 
@@ -1161,7 +1100,7 @@ var Navigation = /*#__PURE__*/function () {
       }
     });
 
-    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _navContainer, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_4__.createElementByTemplate)('header', template));
+    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _navContainer, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_4__.createElementByTemplate)('header', _template__WEBPACK_IMPORTED_MODULE_6__.navTemplate));
 
     (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _tabMenuNav, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_4__.selectDom)('#tab-menu-navigation', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _navContainer)));
 
@@ -1319,8 +1258,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/classPrivateFieldSet */ "./node_modules/@babel/runtime/helpers/esm/classPrivateFieldSet.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/dom */ "./src/js/utils/dom.js");
-/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./template */ "./src/js/view/template.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../constants */ "./src/js/constants/index.js");
+/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/dom */ "./src/js/utils/dom.js");
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./template */ "./src/js/view/template.js");
 
 
 
@@ -1335,6 +1275,7 @@ function _classPrivateFieldInitSpec(obj, privateMap, value) { _checkPrivateRedec
 function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
 
 function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
+
 
 
 
@@ -1389,9 +1330,9 @@ var Router = /*#__PURE__*/function () {
         var path = window.location.hash || '#/purchase';
 
         if (!(0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_3__["default"])(_this, _renderList)[path]) {
-          var notFoundContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.createElementByTemplate)('div', _template__WEBPACK_IMPORTED_MODULE_7__.notFoundTemplate);
+          var notFoundContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_7__.createElementByTemplate)('div', _template__WEBPACK_IMPORTED_MODULE_8__.notFoundTemplate);
           notFoundContainer.id = 'app';
-          (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.selectDom)('body').replaceChild(notFoundContainer, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.selectDom)('#app'));
+          (0,_utils_dom__WEBPACK_IMPORTED_MODULE_7__.selectDom)('body').replaceChild(notFoundContainer, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_7__.selectDom)('#app'));
           return;
         }
 
@@ -1400,7 +1341,7 @@ var Router = /*#__PURE__*/function () {
 
           (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_3__["default"])(_this, _render).call(_this);
 
-          (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.generateSnackBar)('로그인이 필요합니다.');
+          (0,_utils_dom__WEBPACK_IMPORTED_MODULE_7__.generateSnackBar)(_constants__WEBPACK_IMPORTED_MODULE_6__.ERROR_MESSAGE.NOT_LOGIN);
           return;
         }
 
@@ -1409,11 +1350,11 @@ var Router = /*#__PURE__*/function () {
 
           (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_3__["default"])(_this, _render).call(_this);
 
-          (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.generateSnackBar)('이미 로그인한 상태입니다.');
+          (0,_utils_dom__WEBPACK_IMPORTED_MODULE_7__.generateSnackBar)(_constants__WEBPACK_IMPORTED_MODULE_6__.ERROR_MESSAGE.ALREADY_LOGGINED);
           return;
         }
 
-        (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.selectDom)('body').replaceChild((0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_3__["default"])(_this, _renderList)[path].element, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.selectDom)('#app'));
+        (0,_utils_dom__WEBPACK_IMPORTED_MODULE_7__.selectDom)('body').replaceChild((0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_3__["default"])(_this, _renderList)[path].element, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_7__.selectDom)('#app'));
 
         _classPrivateMethodGet(_this, _updateCurrentTabMenu, _updateCurrentTabMenu2).call(_this, path);
       }
@@ -1499,10 +1440,10 @@ var Router = /*#__PURE__*/function () {
 }();
 
 function _updateCurrentTabMenu2(path) {
-  if (!(0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.selectDom)('#tab-menu-navigation')) return;
-  var previousMenuButton = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.selectDom)('.current', (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.selectDom)('#tab-menu-navigation'));
+  if (!(0,_utils_dom__WEBPACK_IMPORTED_MODULE_7__.selectDom)('#tab-menu-navigation')) return;
+  var previousMenuButton = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_7__.selectDom)('.current', (0,_utils_dom__WEBPACK_IMPORTED_MODULE_7__.selectDom)('#tab-menu-navigation'));
   previousMenuButton === null || previousMenuButton === void 0 ? void 0 : previousMenuButton.classList.remove('current');
-  var currentMenuButton = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.selectDom)("[href=\"".concat(path, "\"]"), (0,_utils_dom__WEBPACK_IMPORTED_MODULE_6__.selectDom)('#tab-menu-navigation'));
+  var currentMenuButton = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_7__.selectDom)("[href=\"".concat(path, "\"]"), (0,_utils_dom__WEBPACK_IMPORTED_MODULE_7__.selectDom)('#tab-menu-navigation'));
   currentMenuButton === null || currentMenuButton === void 0 ? void 0 : currentMenuButton.classList.add('current');
 }
 
@@ -2110,9 +2051,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
 /* harmony import */ var _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/classPrivateFieldGet */ "./node_modules/@babel/runtime/helpers/esm/classPrivateFieldGet.js");
 /* harmony import */ var _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/classPrivateFieldSet */ "./node_modules/@babel/runtime/helpers/esm/classPrivateFieldSet.js");
-/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../utils/dom */ "./src/js/utils/dom.js");
-/* harmony import */ var _utils_event__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../utils/event */ "./src/js/utils/event.js");
-/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./template */ "./src/js/view/pages/myProfile/template.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../constants */ "./src/js/constants/index.js");
+/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../utils/dom */ "./src/js/utils/dom.js");
+/* harmony import */ var _utils_event__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../utils/event */ "./src/js/utils/event.js");
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./template */ "./src/js/view/pages/myProfile/template.js");
 
 
 
@@ -2121,6 +2063,7 @@ __webpack_require__.r(__webpack_exports__);
 function _classPrivateFieldInitSpec(obj, privateMap, value) { _checkPrivateRedeclaration(obj, privateMap); privateMap.set(obj, value); }
 
 function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
+
 
 
 
@@ -2188,11 +2131,11 @@ var MyProfile = /*#__PURE__*/function () {
         var password = (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(_this, _passwordInput).value;
 
         if (password !== (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(_this, _passwordConfirmInput).value) {
-          (0,_utils_dom__WEBPACK_IMPORTED_MODULE_4__.generateSnackBar)('비밀번호와 비밀번호 확인이 일치하지않습니다.');
+          (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.generateSnackBar)(_constants__WEBPACK_IMPORTED_MODULE_4__.ERROR_MESSAGE.NOT_SAME_PASSWORD);
           return;
         }
 
-        (0,_utils_event__WEBPACK_IMPORTED_MODULE_5__.emitEvent)(_this.element, 'update-user', {
+        (0,_utils_event__WEBPACK_IMPORTED_MODULE_6__.emitEvent)(_this.element, 'update-user', {
           email: email,
           name: name,
           password: password
@@ -2202,19 +2145,19 @@ var MyProfile = /*#__PURE__*/function () {
       }
     });
 
-    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _updateContainer, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_4__.createElementByTemplate)('div', _template__WEBPACK_IMPORTED_MODULE_6__["default"]));
+    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _updateContainer, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.createElementByTemplate)('div', _template__WEBPACK_IMPORTED_MODULE_7__["default"]));
 
     (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _updateContainer).id = 'app';
 
-    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _updateForm, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_4__.selectDom)('#update-user-form', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _updateContainer)));
+    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _updateForm, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.selectDom)('#update-user-form', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _updateContainer)));
 
-    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _emailInput, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_4__.selectDom)('#update-user-email', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _updateContainer)));
+    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _emailInput, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.selectDom)('#update-user-email', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _updateContainer)));
 
-    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _nameInput, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_4__.selectDom)('#update-user-name', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _updateContainer)));
+    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _nameInput, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.selectDom)('#update-user-name', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _updateContainer)));
 
-    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _passwordInput, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_4__.selectDom)('#update-user-password', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _updateContainer)));
+    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _passwordInput, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.selectDom)('#update-user-password', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _updateContainer)));
 
-    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _passwordConfirmInput, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_4__.selectDom)('#update-user-password-confirm', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _updateContainer)));
+    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _passwordConfirmInput, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.selectDom)('#update-user-password-confirm', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _updateContainer)));
 
     (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _updateForm).addEventListener('submit', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _handleupdateForm));
   }
@@ -2540,9 +2483,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
 /* harmony import */ var _babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/classPrivateFieldGet */ "./node_modules/@babel/runtime/helpers/esm/classPrivateFieldGet.js");
 /* harmony import */ var _babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/classPrivateFieldSet */ "./node_modules/@babel/runtime/helpers/esm/classPrivateFieldSet.js");
-/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../utils/dom */ "./src/js/utils/dom.js");
-/* harmony import */ var _utils_event__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../utils/event */ "./src/js/utils/event.js");
-/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./template */ "./src/js/view/pages/signUp/template.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../constants */ "./src/js/constants/index.js");
+/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../utils/dom */ "./src/js/utils/dom.js");
+/* harmony import */ var _utils_event__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../utils/event */ "./src/js/utils/event.js");
+/* harmony import */ var _template__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./template */ "./src/js/view/pages/signUp/template.js");
 
 
 
@@ -2551,6 +2495,7 @@ __webpack_require__.r(__webpack_exports__);
 function _classPrivateFieldInitSpec(obj, privateMap, value) { _checkPrivateRedeclaration(obj, privateMap); privateMap.set(obj, value); }
 
 function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
+
 
 
 
@@ -2618,11 +2563,11 @@ var SignUpTab = /*#__PURE__*/function () {
         var password = (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(_this, _passwordInput).value;
 
         if (password !== (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(_this, _passwordConfirmInput).value) {
-          (0,_utils_dom__WEBPACK_IMPORTED_MODULE_4__.generateSnackBar)('비밀번호와 비밀번호 확인이 일치하지않습니다.');
+          (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.generateSnackBar)(_constants__WEBPACK_IMPORTED_MODULE_4__.ERROR_MESSAGE.NOT_SAME_PASSWORD);
           return;
         }
 
-        (0,_utils_event__WEBPACK_IMPORTED_MODULE_5__.emitEvent)(_this.element, 'sign-up', {
+        (0,_utils_event__WEBPACK_IMPORTED_MODULE_6__.emitEvent)(_this.element, 'sign-up', {
           email: email,
           name: name,
           password: password
@@ -2630,19 +2575,19 @@ var SignUpTab = /*#__PURE__*/function () {
       }
     });
 
-    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _signUpContainer, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_4__.createElementByTemplate)('div', _template__WEBPACK_IMPORTED_MODULE_6__["default"]));
+    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _signUpContainer, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.createElementByTemplate)('div', _template__WEBPACK_IMPORTED_MODULE_7__["default"]));
 
     (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _signUpContainer).id = 'app';
 
-    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _signUpForm, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_4__.selectDom)('#sign-up-form', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _signUpContainer)));
+    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _signUpForm, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.selectDom)('#sign-up-form', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _signUpContainer)));
 
-    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _emailInput, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_4__.selectDom)('#sign-up-email', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _signUpContainer)));
+    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _emailInput, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.selectDom)('#sign-up-email', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _signUpContainer)));
 
-    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _nameInput, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_4__.selectDom)('#sign-up-name', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _signUpContainer)));
+    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _nameInput, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.selectDom)('#sign-up-name', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _signUpContainer)));
 
-    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _passwordInput, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_4__.selectDom)('#sign-up-password', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _signUpContainer)));
+    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _passwordInput, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.selectDom)('#sign-up-password', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _signUpContainer)));
 
-    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _passwordConfirmInput, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_4__.selectDom)('#sign-up-password-confirm', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _signUpContainer)));
+    (0,_babel_runtime_helpers_classPrivateFieldSet__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _passwordConfirmInput, (0,_utils_dom__WEBPACK_IMPORTED_MODULE_5__.selectDom)('#sign-up-password-confirm', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _signUpContainer)));
 
     (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _signUpForm).addEventListener('submit', (0,_babel_runtime_helpers_classPrivateFieldGet__WEBPACK_IMPORTED_MODULE_2__["default"])(this, _handlesignUpForm));
   }
@@ -2686,39 +2631,11 @@ var signUpTemplate = "<main>\n<h1 class=\"user-title\">\uD68C\uC6D0\uAC00\uC785<
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "manageProductTemplate": () => (/* binding */ manageProductTemplate),
-/* harmony export */   "addChangeTemplate": () => (/* binding */ addChangeTemplate),
-/* harmony export */   "productTableRow": () => (/* binding */ productTableRow),
-/* harmony export */   "updateProductTableRow": () => (/* binding */ updateProductTableRow),
-/* harmony export */   "purchaseTemplate": () => (/* binding */ purchaseTemplate),
-/* harmony export */   "productPurchaseTableRow": () => (/* binding */ productPurchaseTableRow),
+/* harmony export */   "navTemplate": () => (/* binding */ navTemplate),
 /* harmony export */   "notFoundTemplate": () => (/* binding */ notFoundTemplate)
 /* harmony export */ });
-var manageProductTemplate = "\n<section title=\"\uC0C1\uD488 \uC815\uBCF4\">\n  <form id=\"add-product-form\">\n    <fieldset>\n      <legend>\uCD94\uAC00\uD560 \uC0C1\uD488 \uC815\uBCF4\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694.</legend>\n      <input type=\"text\" id=\"add-product-name-input\" placeholder=\"\uC0C1\uD488\uBA85\" required/>\n      <input type=\"number\" id=\"add-product-price-input\" placeholder=\"\uAC00\uACA9\" min=\"100\" max=\"10000\" required/>\n      <input type=\"number\" id=\"add-product-stock-input\" placeholder=\"\uC218\uB7C9\" min=\"1\" max=\"20\" required/>\n      <button type=\"submit\" class=\"submit-button\">\uCD94\uAC00</button>\n    </fieldset>\n  </form>\n</section>\n<section class=\"table-section\" title=\"\uC0C1\uD488 \uD604\uD669\">\n  <table id=\"product-status-table\">\n    <caption>\n      \uC0C1\uD488 \uD604\uD669\n    </caption>\n    <tr>\n      <th>\uC0C1\uD488\uBA85</th>\n      <th>\uAC00\uACA9</th>\n      <th>\uC218\uB7C9</th>\n      <th>\uAD00\uB9AC</th>\n    </tr>\n  </table>\n</section>";
-var addChangeTemplate = "\n<section title=\"\uC794\uB3C8 \uCDA9\uC804\">\n  <form class=\"input-money-form\" id=\"add-change-form\">\n    <label for=\"\">\uC790\uD310\uAE30\uAC00 \uBCF4\uC720\uD560 \uAE08\uC561\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694</label>\n    <div>\n      <input type=\"number\" id=\"money-input\" placeholder=\"\uAE08\uC561\" />\n      <button type=\"submit\" class=\"submit-button\">\uCDA9\uC804</button>\n    </div>\n  </form>\n  <p>\uD604\uC7AC \uBCF4\uC720 \uAE08\uC561: <span id=\"total-change\">0</span>\uC6D0</p>\n</section>\n<section class=\"table-section\" title=\"\uC790\uD310\uAE30 \uD604\uD669\">\n  <table id=\"coin-status-table\">\n    <caption>\n      \uC790\uD310\uAE30\uAC00 \uBCF4\uC720\uD55C \uB3D9\uC804\n    </caption>\n    <tr>\n      <th>\uB3D9\uC804</th>\n      <th>\uAC1C\uC218</th>\n    </tr>\n    <tr>\n      <td>500\uC6D0</td>\n      <td data-coin-name='FIVE_HUNDRED_WON'>0\uAC1C</td>\n    </tr>\n    <tr>\n      <td>100\uC6D0</td>\n      <td data-coin-name='ONE_HUNDRED_WON'>0\uAC1C</td>\n    </tr>\n    <tr>\n      <td>50\uC6D0</td>\n      <td data-coin-name='FIFTY_WON'>0\uAC1C</td>\n    </tr>\n    <tr>\n      <td>10\uC6D0</td>\n      <td data-coin-name='TEN_WON'>0\uAC1C</td>\n    </tr>\n  </table>\n</section>";
-var productTableRow = function productTableRow(_ref) {
-  var name = _ref.name,
-      price = _ref.price,
-      stock = _ref.stock,
-      id = _ref.id;
-  return "\n<tr>\n  <td class=\"product-name\">".concat(name, "</td>\n  <td class=\"product-price\">").concat(price, "</td>\n  <td class=\"product-stock\">").concat(stock, "</td>\n  <td>\n    <div class=\"table-button-wrapper\">\n      <button type=\"button\" class=\"update-product-button\" data-product-id=").concat(id, ">\uC218\uC815</button>\n      <button type=\"button\" class=\"remove-product-button\" data-product-id=").concat(id, ">\uC0AD\uC81C</button>\n    </div>\n  </td>\n</tr>\n");
-};
-var updateProductTableRow = function updateProductTableRow(_ref2) {
-  var name = _ref2.name,
-      price = _ref2.price,
-      stock = _ref2.stock,
-      id = _ref2.id;
-  return "\n<tr>\n  <td><input type=\"text\" class=\"update-product-name-input\" value=\"".concat(name, "\" /></td>\n  <td><input type=\"number\" class=\"update-product-price-input\" value=\"").concat(price, "\" /></td>\n  <td><input type=\"number\" class=\"update-product-stock-input\" value=\"").concat(stock, "\" /></td>\n  <td>\n    <div class=\"table-button-wrapper\">\n      <button type=\"button\" class=\"confirm-update-button\" data-product-id=").concat(id, ">\n      \uD655\uC778\n      </button>\n    </div>\n  </td>\n</tr>\n");
-};
-var purchaseTemplate = "<section>\n<h2 hidden aria-labelledby=\"purchase-product\">\uC0C1\uD488 \uAD6C\uB9E4</h2>\n<form class=\"input-money-form\" id=\"purchase-product-form\">\n  <label for=\"purchase-product-form\">\uC0C1\uD488\uC744 \uAD6C\uB9E4\uD560 \uAE08\uC561\uC744 \uD22C\uC785\uD574\uC8FC\uC138\uC694</label>\n  <div>\n    <input type=\"number\" id=\"money-input\" placeholder=\"\uAE08\uC561\" min=\"10\" max=\"10000\"/>\n    <button type=\"submit\" class=\"submit-button\">\uCDA9\uC804</button>\n  </div>\n</form>\n<p>\uD22C\uC785\uD55C \uAE08\uC561: <span id=\"total-money\">0</span>\uC6D0</p>\n</section>\n<section class=\"table-section\" title=\"\uC0C1\uD488 \uD604\uD669\">\n  <table id=\"product-status-table\">\n    <caption>\n      \uAD6C\uB9E4\uAC00\uB2A5 \uC0C1\uD488 \uD604\uD669\n    </caption>\n    <tr>\n      <th>\uC0C1\uD488\uBA85</th>\n      <th>\uAC00\uACA9</th>\n      <th>\uC218\uB7C9</th>\n      <th>\uAD00\uB9AC</th>\n    </tr>\n</table>\n</section>\n  <section class=\"table-section\" title=\"\uC790\uD310\uAE30 \uD604\uD669\">\n  <table id=\"coin-status-table\">\n    <caption>\n      \uC794\uB3C8\uBC18\uD658\n    </caption>\n    <tr>\n      <th>\uB3D9\uC804</th>\n      <th>\uAC1C\uC218</th>\n    </tr>\n    <tr>\n      <td>500\uC6D0</td>\n      <td data-coin-name='FIVE_HUNDRED_WON'>0\uAC1C</td>\n    </tr>\n    <tr>\n      <td>100\uC6D0</td>\n      <td data-coin-name='ONE_HUNDRED_WON'>0\uAC1C</td>\n    </tr>\n    <tr>\n      <td>50\uC6D0</td>\n      <td data-coin-name='FIFTY_WON'>0\uAC1C</td>\n    </tr>\n    <tr>\n      <td>10\uC6D0</td>\n      <td data-coin-name='TEN_WON'>0\uAC1C</td>\n    </tr>\n  </table>\n  <button id=\"give-change-button\">\uBC18\uD658</button>\n</section>";
-var productPurchaseTableRow = function productPurchaseTableRow(_ref3) {
-  var name = _ref3.name,
-      stock = _ref3.stock,
-      price = _ref3.price,
-      id = _ref3.id;
-  return "\n<tr>\n  <td class=\"product-name\">".concat(name, "</td>\n  <td class=\"product-price\">").concat(price, "</td>\n  <td class=\"product-stock\">").concat(stock, "</td>\n  <td>\n    <div class=\"table-button-wrapper\">\n      <button type=\"button\" class=\"purchase-product-button\" data-product-id=").concat(id, ">\uAD6C\uB9E4</button>\n    </div>\n  </td>\n</tr>");
-};
-var notFoundTemplate = "\n<section title=\"\uC874\uC7AC\uD558\uC9C0 \uC54A\uB294 \uD398\uC774\uC9C0\" class=\"not-found-section\">\n  <h2>\uD83D\uDED2 Page Not Found</h2>\n  <a href=\"/\" class=\"tab-menu-button\">\uC2DC\uC791 \uD398\uC774\uC9C0\uB85C</a>\n</section>";
+var navTemplate = "\n    <nav class=\"user-navigation\"> \n      <a type=\"button\" class=\"tab-menu-button\" id=\"to-login-anchor\" href=\"#/login\">\n        \uB85C\uADF8\uC778 \n        </a>\n    <button type=\"button\" class=\"user-navigation-profile--button hide\">\n        \uC6B0\n  </button>\n  <ul class=\"user-navigation--ul hide\">\n    <li type=\"button\" class=\"user-navigation--li\">\n      <a href=\"#/myprofile\" id=\"user-navigation-profile\">Profile</a>\n    </li>\n    <li type=\"button\" class=\"user-navigation--li\" id=\"logout\">\n      Logout\n    </li>\n  </ul>\n    </nav>\n    <h1 id=\"app-title\">\uD83C\uDF7F \uC790\uD310\uAE30 \uD83C\uDF7F</h1>\n    <nav id=\"tab-menu-navigation\">\n        <a type=\"button\" id=\"manage-tab-menu\" class=\"tab-menu-button\" href=\"#/manage\">\n          \uC0C1\uD488 \uAD00\uB9AC\n        </a>\n        <a type=\"button\" id=\"charge-tab-menu\" class=\"tab-menu-button\" href=\"#/charge\">\n          \uC794\uB3C8 \uCDA9\uC804\n        </a>\n        <a type=\"button\" id=\"purchase-tab-menu\" class=\"tab-menu-button\" href=\"#/purchase\">\n          \uC0C1\uD488 \uAD6C\uB9E4\n        </a>\n    </nav>\n    ";
+var notFoundTemplate = "\n    <section title=\"\uC874\uC7AC\uD558\uC9C0 \uC54A\uB294 \uD398\uC774\uC9C0\" class=\"not-found-section\">\n      <h2>\uD83D\uDED2 Page Not Found</h2>\n      <a href=\"/\" class=\"tab-menu-button\">\uC2DC\uC791 \uD398\uC774\uC9C0\uB85C</a>\n    </section>";
 
 /***/ }),
 
@@ -2896,7 +2813,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "#snackbar {\n  visibility: hidden;\n  min-width: 250px;\n  margin-left: -125px;\n  background-color: #333;\n  color: #fff;\n  text-align: center;\n  border-radius: 2px;\n  padding: 16px;\n  position: fixed;\n  z-index: 1;\n  left: 50%;\n  bottom: 30px;\n  font-size: 17px;\n}\n\n#snackbar.show {\n  visibility: visible;\n  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;\n  animation: fadein 0.5s, fadeout 0.5s 2.5s;\n}\n\n@-webkit-keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0;\n  }\n  to {\n    bottom: 30px;\n    opacity: 1;\n  }\n}\n\n@keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0;\n  }\n  to {\n    bottom: 30px;\n    opacity: 1;\n  }\n}\n\n@-webkit-keyframes fadeout {\n  from {\n    bottom: 30px;\n    opacity: 1;\n  }\n  to {\n    bottom: 0;\n    opacity: 0;\n  }\n}\n\n@keyframes fadeout {\n  from {\n    bottom: 30px;\n    opacity: 1;\n  }\n  to {\n    bottom: 0;\n    opacity: 0;\n  }\n}\n", "",{"version":3,"sources":["webpack://./src/css/snackbar.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,gBAAgB;EAChB,mBAAmB;EACnB,sBAAsB;EACtB,WAAW;EACX,kBAAkB;EAClB,kBAAkB;EAClB,aAAa;EACb,eAAe;EACf,UAAU;EACV,SAAS;EACT,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,mBAAmB;EACnB,iDAAiD;EACjD,yCAAyC;AAC3C;;AAEA;EACE;IACE,SAAS;IACT,UAAU;EACZ;EACA;IACE,YAAY;IACZ,UAAU;EACZ;AACF;;AAEA;EACE;IACE,SAAS;IACT,UAAU;EACZ;EACA;IACE,YAAY;IACZ,UAAU;EACZ;AACF;;AAEA;EACE;IACE,YAAY;IACZ,UAAU;EACZ;EACA;IACE,SAAS;IACT,UAAU;EACZ;AACF;;AAEA;EACE;IACE,YAAY;IACZ,UAAU;EACZ;EACA;IACE,SAAS;IACT,UAAU;EACZ;AACF","sourcesContent":["#snackbar {\n  visibility: hidden;\n  min-width: 250px;\n  margin-left: -125px;\n  background-color: #333;\n  color: #fff;\n  text-align: center;\n  border-radius: 2px;\n  padding: 16px;\n  position: fixed;\n  z-index: 1;\n  left: 50%;\n  bottom: 30px;\n  font-size: 17px;\n}\n\n#snackbar.show {\n  visibility: visible;\n  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;\n  animation: fadein 0.5s, fadeout 0.5s 2.5s;\n}\n\n@-webkit-keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0;\n  }\n  to {\n    bottom: 30px;\n    opacity: 1;\n  }\n}\n\n@keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0;\n  }\n  to {\n    bottom: 30px;\n    opacity: 1;\n  }\n}\n\n@-webkit-keyframes fadeout {\n  from {\n    bottom: 30px;\n    opacity: 1;\n  }\n  to {\n    bottom: 0;\n    opacity: 0;\n  }\n}\n\n@keyframes fadeout {\n  from {\n    bottom: 30px;\n    opacity: 1;\n  }\n  to {\n    bottom: 0;\n    opacity: 0;\n  }\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "#snackbar {\n  min-width: 250px;\n  margin: auto;\n  background-color: #333;\n  color: #fff;\n  text-align: center;\n  border-radius: 2px;\n  padding: 16px;\n  position: fixed;\n  z-index: 1;\n  bottom: 30px;\n  font-size: 17px;\n}\n", "",{"version":3,"sources":["webpack://./src/css/snackbar.css"],"names":[],"mappings":"AAAA;EACE,gBAAgB;EAChB,YAAY;EACZ,sBAAsB;EACtB,WAAW;EACX,kBAAkB;EAClB,kBAAkB;EAClB,aAAa;EACb,eAAe;EACf,UAAU;EACV,YAAY;EACZ,eAAe;AACjB","sourcesContent":["#snackbar {\n  min-width: 250px;\n  margin: auto;\n  background-color: #333;\n  color: #fff;\n  text-align: center;\n  border-radius: 2px;\n  padding: 16px;\n  position: fixed;\n  z-index: 1;\n  bottom: 30px;\n  font-size: 17px;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -4449,19 +4366,19 @@ class User {
         __classPrivateFieldSet(this, _User_email, null, "f");
     }
     async initLoginStatus() {
-        if (__classPrivateFieldGet(this, _User_accessToken, "f")) {
-            try {
-                const res = await _api_user_js__WEBPACK_IMPORTED_MODULE_0__["default"].searchInfo(__classPrivateFieldGet(this, _User_accessToken, "f"));
-                __classPrivateFieldSet(this, _User_isLogined, true, "f");
-                __classPrivateFieldSet(this, _User_id, res.id, "f");
-                __classPrivateFieldSet(this, _User_email, res.email, "f");
-                __classPrivateFieldSet(this, _User_name, res.name, "f");
-            }
-            catch (_a) {
-                (0,_utils_cookie_js__WEBPACK_IMPORTED_MODULE_1__.expireCookie)('accessToken');
-                __classPrivateFieldSet(this, _User_isLogined, false, "f");
-                __classPrivateFieldSet(this, _User_id, null, "f");
-            }
+        if (!__classPrivateFieldGet(this, _User_accessToken, "f"))
+            return;
+        try {
+            const res = await _api_user_js__WEBPACK_IMPORTED_MODULE_0__["default"].searchInfo(__classPrivateFieldGet(this, _User_accessToken, "f"));
+            __classPrivateFieldSet(this, _User_isLogined, true, "f");
+            __classPrivateFieldSet(this, _User_id, res.id, "f");
+            __classPrivateFieldSet(this, _User_email, res.email, "f");
+            __classPrivateFieldSet(this, _User_name, res.name, "f");
+        }
+        catch (_a) {
+            (0,_utils_cookie_js__WEBPACK_IMPORTED_MODULE_1__.expireCookie)(_constants__WEBPACK_IMPORTED_MODULE_3__.COOKIE_KEY);
+            __classPrivateFieldSet(this, _User_isLogined, false, "f");
+            __classPrivateFieldSet(this, _User_id, null, "f");
         }
     }
     async signIn(email, password) {
@@ -4471,7 +4388,7 @@ class User {
             __classPrivateFieldSet(this, _User_email, email, "f");
             __classPrivateFieldSet(this, _User_name, name, "f");
             __classPrivateFieldSet(this, _User_isLogined, true, "f");
-            (0,_utils_cookie_js__WEBPACK_IMPORTED_MODULE_1__.setCookie)('accessToken', accessToken);
+            (0,_utils_cookie_js__WEBPACK_IMPORTED_MODULE_1__.setCookie)(_constants__WEBPACK_IMPORTED_MODULE_3__.COOKIE_KEY, accessToken);
         }
     }
     async signUp(email, name, password) {
@@ -4481,7 +4398,7 @@ class User {
             __classPrivateFieldSet(this, _User_id, id, "f");
             __classPrivateFieldSet(this, _User_email, email, "f");
             __classPrivateFieldSet(this, _User_name, name, "f");
-            (0,_utils_cookie_js__WEBPACK_IMPORTED_MODULE_1__.setCookie)('accessToken', accessToken);
+            (0,_utils_cookie_js__WEBPACK_IMPORTED_MODULE_1__.setCookie)(_constants__WEBPACK_IMPORTED_MODULE_3__.COOKIE_KEY, accessToken);
         }
     }
     async userInfo() {
@@ -4593,7 +4510,7 @@ class VendingMachine {
     }
     sellProduct(productId) {
         if (__classPrivateFieldGet(this, _VendingMachine_productList, "f")[productId].stock === 0) {
-            throw new Error('해당 상품은 품절입니다.');
+            throw new Error(_constants__WEBPACK_IMPORTED_MODULE_2__.ERROR_MESSAGE.SOLD_OUT);
         }
         if (__classPrivateFieldGet(this, _VendingMachine_instances, "m", _VendingMachine_validateProduct).call(this, productId)) {
             __classPrivateFieldGet(this, _VendingMachine_productList, "f")[productId].sell();
@@ -4618,7 +4535,7 @@ class VendingMachine {
 }
 _VendingMachine_productList = new WeakMap(), _VendingMachine_moneyBox = new WeakMap(), _VendingMachine_totalMoney = new WeakMap(), _VendingMachine_instances = new WeakSet(), _VendingMachine_validateProduct = function _VendingMachine_validateProduct(productId) {
     if (__classPrivateFieldGet(this, _VendingMachine_productList, "f")[productId].price > __classPrivateFieldGet(this, _VendingMachine_totalMoney, "f")) {
-        throw new Error('금액이 부족합니다');
+        throw new Error(_constants__WEBPACK_IMPORTED_MODULE_2__.ERROR_MESSAGE.NOT_ENOUGH_MONEY);
     }
     __classPrivateFieldGet(this, _VendingMachine_instances, "m", _VendingMachine_validateProductIdInList).call(this, productId);
     return true;
